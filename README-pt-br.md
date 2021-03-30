@@ -1,17 +1,17 @@
-# Webpack React Config Guide
+# Guia para Configuração Webpack React
 
-Languages: [EN-US](/react-typescript-webpack-config/blob/main/README.md), [PT-BR](/react-typescript-webpack-config/blob/main/README-pt-br.md).
+Idiomas: [EN-US](/react-typescript-webpack-config/blob/main/README.md), [PT-BR](/react-typescript-webpack-config/blob/main/README-pt-br.md).
 
-## Summary
+## Sumário
 
-- [Start Project](#start-project)
-- [Create Initial Files](#create-initial-files)
-- [Build Vanilla JS](#build-vanilla-js)
-- [Build JSX](#build-jsx)
-- [Build HTML](#build-html)
-- [Running App in Dev Mode](#running-app-in-dev-mode)
+- [Iniciando Projeto](#iniciando-projeto)
+- [Criando Arquivos Iniciais](#criando-arquivos-iniciais)
+- [Buildando JS Vanilla](#buildando-js-vanilla)
+- [Buildando JSX](#buildando-jsx)
+- [Buildando HTML](#buildando-html)
+- [Rodando Aplicação em Ambiente de Desenvolvimento](#rodando-aplicação-em-ambiente-de-desenvolvimento)
 
-## Start Project:
+## Iniciando Projeto:
 
 ```bash
 mkdir my_projet
@@ -19,16 +19,16 @@ cd my_project
 yarn init
 ```
 
-Add webpack dependencies:
+Adicione as dependencias necessárias:
 
 ```bash
 yarn add react react-dom
 yarn add webpack webpack-cli -D
 ```
 
-## Create Initial Files:
+## Criando Arquivos Iniciais:
 
-Create `src/index.html`:
+index.html
 
 ```html
 <!DOCTYPE html>
@@ -48,15 +48,15 @@ Create `src/index.html`:
 </html>
 ```
 
-Create `src/index.js`:
+index.js
 
 ```js
 console.log('Hello, World!')
 ```
 
-## Build Vanilla JS:
+## Buildando JS Vanilla:
 
-On project's root folder, create `config/webpack.config.js`.
+Na raiz do projeto, crie a pasta config com o arquivo de configuração do webpack.config.js.
 
 ```bash
 mkdir config
@@ -64,7 +64,10 @@ cd config
 touch webpack.config.js
 ```
 
-The file `config/webpack.config.js` must export an object with *entry* and *output* data:
+A configuração webpack deve conter as propriedades:
+
+- **entry**: Arquivo de entrada;
+- **output**: Arquivo de saída.
 
 ```js
 const path = require('path');
@@ -79,28 +82,23 @@ module.exports = {
 }
 ```
 
-To build the app, run the command line, or create a script on `package.json`.
-
 ```dash
 yarn webpack --config config/webpack.config.js --mode production
 ```
 
-```js
-"scripts": {
-  "build": "webpack --config config/webpack.config.js --mode production"
-},
-```
+Com essa configuração, o build do projeto vai possuir o javascript minificado dentro da
+pasta `/dist`.
 
-## Build JSX
+## Buildando JSX
 
-Add babel dependencies:
+Necessário adicional dependencias `babel`.
 
 ```bash
 yarn add react react-dom
 yarn add @babel/core @babel/preset-env @babel/preset-react babel-loader -D
 ```
 
-Modify `index.js` content to import an React JSX component:
+Modifique o arquivo index.js para receber um componente React em JSX.
 
 index.js
 
@@ -124,7 +122,15 @@ const App = () => {
 export default App;
 ```
 
-babel-loader webpack config:
+A configuração webpack deve conter as propriedades:
+
+- **module**: 
+- **rules**: 
+- **test**: 
+- **loader**: 
+- **exclude**: 
+- **options**: 
+- **presets**: 
 
 ```js
 module.exports = {
@@ -144,15 +150,19 @@ module.exports = {
 }
 ```
 
-## Build HTML
+## Buildando HTML
 
-Add `HtmlWebpackPlugin` dependencie:
+Necessário adicionar dependencia `HtmlWebpackPlugin`.
 
 ```dash
 yarn add html-webpack-plugin -D
 ```
 
-`HtmlWebpackPlugin` webpack config:
+A configuração webpack deve conter as propriedades:
+
+- **plugins**: 
+- **filename**: 
+- **template**: 
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -168,28 +178,24 @@ module.exports = {
 }
 ```
 
-## Running App in Dev Mode
+## Rodando Aplicação em Ambiente de Desenvolvimento
 
-Add dependencie `webpack-dev-server`:
+Necessário adicionar dependencia `webpack-dev-server`:
 
 ```dash
 yarn add webpack-dev-server -D
 ```
 
-To run the app in dev mod, run the command line, or create a script on `package.json`.
+Para rodar o servidor em modo de desenvolvimento, utilizamos o comando `webpack serve`:
 
 ```dash
 yarn webpack serve --config config/webpack.config.js --mode development --port 8080
 ```
 
-```js
-"scripts": {
-  "start": "webpack serve --config config/webpack.config.js --mode development --port 8080",
-  "build": "webpack --config config/webpack.config.js --mode production"
-},
-```
+A configuração webpack deve conter as propriedades:
 
-`devServer` webpack config:
+- **devServer**: 
+- **contentBase**: 
 
 ```js
 module.exports = {
