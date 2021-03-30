@@ -1,6 +1,6 @@
 # Guia para Configuração Webpack React
 
-Idiomas: [EN-US](/react-typescript-webpack-config/blob/main/README.md), [PT-BR](/react-typescript-webpack-config/blob/main/README-pt-br.md).
+Idiomas: [EN-US](/README.md), [PT-BR](/README-pt-br.md).
 
 ## Sumário
 
