@@ -11,6 +11,7 @@ Languages: [EN-US](/README.md), [PT-BR](/README-pt-br.md).
 - [Build JS and JSX](#build-js-and-jsx)
 - [Build TS and TSX](#build-ts-and-tsx)
 - [Running App in Dev Mode](#running-app-in-dev-mode)
+- [CSS Loader](#css-loader)
 
 ## Start Project:
 
@@ -230,7 +231,7 @@ module.exports = {
 }
 ```
 
-## Add CSS support
+## CSS Loader
 
 Add dependencie `style-loader` and `css-loader`:
 
