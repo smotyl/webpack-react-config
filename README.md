@@ -5,7 +5,7 @@ Languages: [EN-US](/README.md), [PT-BR](/README-pt-br.md).
 ## Summary
 
 - [Start Project](#start-project)
-- [Create Initial Files](#create-initial-files)
+- [Create Source Files](#create-source-files)
 - [Build HTML](#build-html)
 - [Build Vanilla JS](#build-vanilla-js)
 - [Build JS and JSX](#build-js-and-jsx)
@@ -28,7 +28,7 @@ yarn add react react-dom
 yarn add webpack webpack-cli -D
 ```
 
-## Create source Files:
+## Create Source Files:
 
 ```js
 src/
