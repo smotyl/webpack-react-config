@@ -6,9 +6,10 @@ Languages: [EN-US](/README.md), [PT-BR](/README-pt-br.md).
 
 - [Start Project](#start-project)
 - [Create Initial Files](#create-initial-files)
-- [Build Vanilla JS](#build-vanilla-js)
-- [Build JSX](#build-jsx)
 - [Build HTML](#build-html)
+- [Build Vanilla JS](#build-vanilla-js)
+- [Build JS and JSX](#build-js-and-jsx)
+- [Build TS and TSX](#build-ts-and-tsx)
 - [Running App in Dev Mode](#running-app-in-dev-mode)
 
 ## Start Project:
@@ -26,7 +27,13 @@ yarn add react react-dom
 yarn add webpack webpack-cli -D
 ```
 
-## Create Initial Files:
+## Create source Files:
+
+```js
+src/
+  index.html
+  index.js // or .ts
+```
 
 Create `src/index.html`:
 
@@ -52,6 +59,30 @@ Create `src/index.js`:
 
 ```js
 console.log('Hello, World!')
+```
+
+## Build HTML
+
+Add `HtmlWebpackPlugin` dependencie:
+
+```dash
+yarn add html-webpack-plugin -D
+```
+
+`HtmlWebpackPlugin` webpack config:
+
+```js
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  ...
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(currDir, 'src', 'index.html'),
+    })
+  ]
+}
 ```
 
 ## Build Vanilla JS:
@@ -91,7 +122,7 @@ yarn webpack --config config/webpack.config.js --mode production
 },
 ```
 
-## Build JSX
+## Build JS and JSX
 
 Add babel dependencies:
 
@@ -144,27 +175,26 @@ module.exports = {
 }
 ```
 
-## Build HTML
+## Build TS and TSX
 
-Add `HtmlWebpackPlugin` dependencie:
-
-```dash
-yarn add html-webpack-plugin -D
+```bash
+yarn add typescript @types/react @types/react-dom ts-loader
 ```
 
-`HtmlWebpackPlugin` webpack config:
+ts-loader webpack config:
 
 ```js
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
   ...
-  plugins: [
-      new HtmlWebpackPlugin({
-          filename: 'index.html',
-          template: path.resolve(currDir, 'src', 'index.html'),
-      })
-  ]
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ]
+  }
 }
 ```
 
@@ -195,7 +225,31 @@ yarn webpack serve --config config/webpack.config.js --mode development --port 8
 module.exports = {
   ...
   devServer: {
-    contentBase: path.resolve(currDir, 'dist'),
+    contentBase: path.resolve(currDir, 'src'),
+  }
+}
+```
+
+## Add CSS support
+
+Add dependencie `style-loader` and `css-loader`:
+
+```dash
+yarn add style-loader css-loader
+```
+
+Add the module rules webpack config for .css files:
+
+```js
+module.exports = {
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ]
   }
 }
 ```
